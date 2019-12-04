@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <h3>Total Data: {{Totallength}}</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Email Id</td>
+                    <td>Dob</td>
+                    <td>City</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let info of myInfo">
+                    <td>
+                        <button class="btn btn-primary btn-xs" (click)="EditData(info.id)"><i class="fa fa-edit"></i></button>
+                        &nbsp;
+                        <button
+                        class="btn btn-danger btn-xs"
+                        mwlConfirmationPopover
+                        [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage"
+                        placement="right"
+                        (confirm)="DeleteData(info.id)"
+                        (cancel)="cancelClicked = true">
+                        <i class="fa fa-trash"></i>
+                        </button>
+                        <!-- <button class="btn btn-danger btn-xs" (click)="DeleteData(info.id)" ng-confirm-click="Would you like to say hi?"><i class="fa fa-trash"></i></button> -->
+                    </td>
+                    <td>{{info.id}}</td>
+                    <td>{{info.name}}</td>
+                    <td>{{info.email}}</td>
+                    <td>{{info.dob}}</td>
+                    <td>{{info.city}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<router-outlet></router-outlet>

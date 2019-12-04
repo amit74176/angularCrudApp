@@ -1,0 +1,51 @@
+<!-- Template Driven Form -->
+<div class="conatiner" style="margin-top: 50px;">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">Add Information</div>
+          <div class="panel-body">
+              <form #myform="ngForm" (ngSubmit)="FormSubmit()">
+                <!-- {{myform.value|json}} -->
+                <!-- <div ngModelGroup="address">
+                    <div class="form-group col-md-6">
+                      <label>City</label>
+                      <input type="text" name="city" class="form-control" ngModel>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>State</label>
+                      <input type="text" name="state" class="form-control" ngModel>
+                    </div>
+                </div> -->
+                <div class="form-group col-md-6">
+                  <label>Name</label>
+                  <input type="text" name="name" class="form-control" [(ngModel)]="myModel.name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Email</label>
+                  <input type="text" name="email_id" class="form-control" [(ngModel)]="myModel.email_id">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>DOB</label>
+                  <input type="date" name="dob" class="form-control" [(ngModel)]="myModel.dob">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>City</label>
+                  <select name="city" class="form-control" [(ngModel)]="myModel.city">
+                    <option value="">Select City</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Ghaziabad">Ghaziabad</option>
+                    <option value="Meerut">Meerut</option>
+                    <option value="Lucknow">Lucknow</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-12">
+                  <input type="submit" value="Submit" class="btn btn-success">
+                </div>
+              </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
