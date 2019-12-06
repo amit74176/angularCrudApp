@@ -13,6 +13,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFound } from './components/PageNotFound/Notfound.component';
 import { AddInfoComponent } from './components/AddInfo/addinfo.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { DataTablesModule } from 'angular-datatables';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +30,10 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    DataTablesModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     ToastrModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here

@@ -1,7 +1,74 @@
+<style>
+    table {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+</style>
 <div class="container">
     <div class="row">
         <h3>Total Data: {{Totallength}}</h3>
-        <table class="table table-bordered">
+        <input type="text" [(ngModel)]="searchKey" (keyup)="applyfilter()">
+        <table mat-table [dataSource]="listdata" matSort class="mat-elevation-z8">
+        <!-- <mat-table #table [dataSource]="listdata" matSort> -->
+            <ng-container matColumnDef="#">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+                <td mat-cell *matCellDef="let element">
+                    <button class="btn btn-primary btn-xs" (click)="EditData(element.id)"><i class="fa fa-edit"></i></button>
+                    &nbsp;
+                    <button
+                    class="btn btn-danger btn-xs"
+                    mwlConfirmationPopover
+                    [popoverTitle]="popoverTitle"
+                    [popoverMessage]="popoverMessage"
+                    placement="right"
+                    (confirm)="DeleteData(element.id)"
+                    (cancel)="cancelClicked = true">
+                    <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dob">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+                <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+            </ng-container>
+            <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+                <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+            </ng-container>
+            <ng-container matColumnDef="noData">
+                <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+                    No records found.
+                </mat-footer-cell>
+            </ng-container>
+            <ng-container matColumnDef="loading">
+                <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
+                    Loading, please wait...
+                </mat-footer-cell>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <mat-footer-row *matFooterRowDef="['noData']" [hidden]="listdata && listdata.data.length > 0"></mat-footer-row>
+            <mat-footer-row *matFooterRowDef="['loading']" [hidden]="listdata !== undefined"></mat-footer-row>
+        </table>
+        <mat-paginator [pageSizeOptions]="[10, 15, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+          <!-- Angular 8 pagination -->
+          
+        
+        <!-- <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" class="table table-bordered">
             <thead>
                 <tr>
                     <td>#</td>
@@ -27,7 +94,6 @@
                         (cancel)="cancelClicked = true">
                         <i class="fa fa-trash"></i>
                         </button>
-                        <!-- <button class="btn btn-danger btn-xs" (click)="DeleteData(info.id)" ng-confirm-click="Would you like to say hi?"><i class="fa fa-trash"></i></button> -->
                     </td>
                     <td>{{info.id}}</td>
                     <td>{{info.name}}</td>
@@ -36,7 +102,7 @@
                     <td>{{info.city}}</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </div>
 </div>
 <router-outlet></router-outlet>
